@@ -12,6 +12,7 @@ import { errorMiddleware } from "./api";
 import { responseFormatterMiddleware } from "./api";
 
 import config from "./configs";
+import { AppError } from "./exception/appError";
 
 export class Server {
   private app;
@@ -23,6 +24,9 @@ export class Server {
   setRouters() {
     this.app.get("/", (req: Request, res: Response) => {
       res.send("Hello World!!");
+    });
+    this.app.get("/error", (req: Request, res: Response) => {
+      throw new AppError(400, "에러 테스트");
     });
   }
 
