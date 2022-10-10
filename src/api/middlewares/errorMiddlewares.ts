@@ -1,22 +1,13 @@
-import { Request, Response, NextFunction } from "express";
-import { HttpException } from "../../exception/httpException";
+import { NextFunction, Request, Response } from "express";
+import { AppError } from "../../exception/appError";
 
-
-const errorMiddleware = (
-  error: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const errorMiddleware = (error: AppError, req: Request, res: Response, next: NextFunction) => {
+  res.header("Content-Type", "application/json");
   console.log("\x1b[33m%s\x1b[0m", error);
-  const status = error.status || 500;
-  console.log(error.status)
-  const message = error.message || "Something went wrong";
-  console.log("message", message);
-  res.status(status).json({
-    status,
-    message,
+  const statusCode = error.statusCode || 500;
+
+  res.status(statusCode).json({
+    statusCode,
+    message: error.message,
   });
 };
-
-export { errorMiddleware };
