@@ -1,9 +1,9 @@
 ### Market Back Server
 
-git clone https://github.com/Im-still-hungry/modumarket-server.git
-cd modumarket-server
-yarn install
-ysrn start:dev
+- git clone https://github.com/Im-still-hungry/modumarket-server.git
+- cd modumarket-server
+- yarn install
+- yarn start:dev
 
 #### .env
 ```
