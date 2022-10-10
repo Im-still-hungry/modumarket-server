@@ -5,7 +5,7 @@ cd modumarket-server
 yarn install
 ysrn start:dev
 
-####.env
+#### .env
 ```
 port=3000
 MONGO_URL=mongodb+srv://market:OgjqZIfViEsQEQEF@cluster0.h9fw3pn.mongodb.net/test
