@@ -10,6 +10,12 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@auth/*": ["src/auth/*"],
+      "@config/*": ["src/config/*"],
+      "@user/*": ["src/user/*"],
+      "@website/*": ["src/website/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
