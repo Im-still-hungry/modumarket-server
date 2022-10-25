@@ -6,9 +6,7 @@ import { WebsiteService } from './website.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Website.website_name, schema: WebsiteSchema },
-    ]),
+    MongooseModule.forFeature([{ name: Website.name, schema: WebsiteSchema }]),
   ],
   controllers: [WebsiteController],
   providers: [WebsiteService],

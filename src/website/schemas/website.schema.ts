@@ -17,8 +17,6 @@ export class Website {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User })
   owner: User;
-
-  static website_name: string;
 }
 
 export const WebsiteSchema = SchemaFactory.createForClass(Website);
