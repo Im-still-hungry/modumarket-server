@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
-  readonly email: string;
+  readonly kakaoCode: string;
   @IsString()
-  readonly password: string;
+  readonly email: string;
 }

@@ -15,7 +15,7 @@ export class Website {
   @Prop()
   html: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   owner: User;
 }
 

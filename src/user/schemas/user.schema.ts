@@ -7,10 +7,10 @@ export type Document = User & mongoose.Document;
 @Schema({ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
 export class User {
   @Prop({ required: true })
-  email: string;
+  kakaoCode: string;
 
   @Prop({ required: true })
-  password: string;
+  email: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Website' })
   websites: Website[];

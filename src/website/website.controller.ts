@@ -11,7 +11,7 @@ import { CreateWebsiteDto } from './dtos/addWebsite.dto';
 import { WebsiteService } from './website.service';
 
 @Controller('website')
-@UseGuards(AuthGuard())
+// @UseGuards(AuthGuard())
 export class WebsiteController {
   constructor(private readonly websiteService: WebsiteService) {}
 
@@ -32,6 +32,6 @@ export class WebsiteController {
     return newWebsite;
   }
 }
-function AuthGuard(): Function | import('@nestjs/common').CanActivate {
-  throw new Error('Function not implemented.');
-}
+// function AuthGuard(): Function | import('@nestjs/common').CanActivate {
+//   throw new Error('Function not implemented.');
+// }
