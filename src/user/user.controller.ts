@@ -6,9 +6,9 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  async createUser(@Body() createUserDto: CreateUserDto) {
-    const result = await this.userService.register(createUserDto);
-    return result;
-  }
+  // @Post()
+  // async createUser(@Body() createUserDto: CreateUserDto) {
+  //   const result = await this.userService.register(createUserDto);
+  //   return result;
+  // }
 }
