@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { CreateWebsiteDto } from './dtos/addWebsite.dto';
+import { GetWebsiteDto } from './dtos/getWebsite.dto';
 import { Website, WebsiteDocument } from './schemas/website.schema';
 
 @Injectable()
@@ -16,8 +17,18 @@ export class WebsiteService {
     return createdWebsite.save();
   }
 
-  async findUrl(url: any): Promise<any> {
+  async findUrl(url: string): Promise<GetWebsiteDto> {
     const result = await this.websiteModel.findOne({ url }).lean();
     return result;
+  }
+
+  async findUserOfUrl(user: ObjectId, url: string): Promise<GetWebsiteDto> {
+    const result = await this.websiteModel.findOne({ url }).lean();
+    return result;
+  }
+
+  async updateWebsite(url: string, html: string): Promise<boolean> {
+    const result = await this.websiteModel.updateOne({ url }, { html }).lean();
+    return result.acknowledged;
   }
 }
