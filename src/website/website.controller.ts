@@ -9,8 +9,10 @@ import {
   Get,
   Param,
   Patch,
+  Delete,
 } from '@nestjs/common';
 import { CreateWebsiteDto } from './dtos/addWebsite.dto';
+import { DeleteWebsiteDto } from './dtos/deleteWebsite.dto';
 import { GetWebsiteDto } from './dtos/getWebsite.dto';
 import { UpdateWebsiteDto } from './dtos/updateWebsite.dto';
 import { WebsiteService } from './website.service';
@@ -20,7 +22,7 @@ import { WebsiteService } from './website.service';
 export class WebsiteController {
   constructor(private readonly websiteService: WebsiteService) {}
 
-  @Post('/create')
+  @Post()
   async createWebsite(
     @Body()
     createWebsiteDto: CreateWebsiteDto,
@@ -35,7 +37,7 @@ export class WebsiteController {
     return newWebsite;
   }
 
-  @Patch(':url')
+  @Patch()
   async updateWebsite(
     @Body() updateWebsiteDto: UpdateWebsiteDto,
     @CurrentUser() user: any,
@@ -61,6 +63,13 @@ export class WebsiteController {
       updateWebsiteDto.html,
     );
 
+    if (!result) {
+      throw new HttpException(
+        '페이지 수정에 실패했습니다.',
+        HttpStatus.CONFLICT,
+      );
+    }
+
     return result;
   }
 
@@ -73,6 +82,26 @@ export class WebsiteController {
     }
 
     return website;
+  }
+
+  @Delete()
+  async deleteWebsite(
+    @Body() deleteWebsiteDto: DeleteWebsiteDto,
+    @CurrentUser() user: any,
+  ): Promise<boolean> {
+    const result = await this.websiteService.deleteWebsite(
+      deleteWebsiteDto.url,
+      deleteWebsiteDto.owner,
+    );
+
+    if (!result) {
+      throw new HttpException(
+        '페이지 삭제에 실패했습니다.',
+        HttpStatus.CONFLICT,
+      );
+    }
+
+    return result;
   }
 }
 // eslint-disable-next-line @typescript-eslint/ban-types

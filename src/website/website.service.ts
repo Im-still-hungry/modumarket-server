@@ -22,13 +22,18 @@ export class WebsiteService {
     return result;
   }
 
-  async findUserOfUrl(user: ObjectId, url: string): Promise<GetWebsiteDto> {
-    const result = await this.websiteModel.findOne({ url }).lean();
+  async findUserOfUrl(owner: ObjectId, url: string): Promise<GetWebsiteDto> {
+    const result = await this.websiteModel.findOne({ url, owner }).lean();
     return result;
   }
 
   async updateWebsite(url: string, html: string): Promise<boolean> {
     const result = await this.websiteModel.updateOne({ url }, { html }).lean();
+    return result.acknowledged;
+  }
+
+  async deleteWebsite(url: string, owner: ObjectId): Promise<boolean> {
+    const result = await this.websiteModel.deleteOne({ owner, url });
     return result.acknowledged;
   }
 }
